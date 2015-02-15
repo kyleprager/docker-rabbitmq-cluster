@@ -1,0 +1,33 @@
+# note that ports 9100-9105 are not exposed here
+# they will be linked automatically between containers by docker
+rabbit01:
+  build: ../server
+  hostname: rabbit01
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+
+rabbit02:
+  build: ../server
+  hostname: rabbit02
+  links:
+    - rabbit01
+  environment:
+   - CLUSTERED=true
+   - CLUSTER_WITH=rabbit01
+   - RAM_NODE=true
+  ports:
+      - "5673:5672"
+      - "15673:15672"
+
+rabbit03:
+  build: ../server
+  hostname: rabbit03
+  links:
+    - rabbit01
+    - rabbit02
+  environment:
+   - CLUSTERED=true
+   - CLUSTER_WITH=rabbit01
+  ports:
+        - "5674:5672"
