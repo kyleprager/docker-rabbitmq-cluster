@@ -13,12 +13,12 @@ rabbit02:
   links:
     - rabbit01
   environment:
-   - CLUSTERED=true
-   - CLUSTER_WITH=rabbit01
-   - RAM_NODE=true
+    - CLUSTERED=true
+    - CLUSTER_WITH=rabbit01
+    - RAM_NODE=true
   ports:
-      - "5673:5672"
-      - "15673:15672"
+    - "5673:5672"
+    - "15673:15672"
 
 rabbit03:
   build: ../server
@@ -27,7 +27,7 @@ rabbit03:
     - rabbit01
     - rabbit02
   environment:
-   - CLUSTERED=true
-   - CLUSTER_WITH=rabbit01
+    - CLUSTERED=true
+    - CLUSTER_WITH=rabbit01
   ports:
-        - "5674:5672"
+    - "5674:5672"
