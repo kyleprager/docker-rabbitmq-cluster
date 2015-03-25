@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set the file descriptor limit to a higher value for RabbitMQ
-ulimit -n 1024
+ulimit -n 65536
 
 # set ownership of /data directory to rabbitmq user
 chown  -R rabbitmq:rabbitmq /data
